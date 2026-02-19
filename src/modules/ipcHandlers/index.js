@@ -16,9 +16,6 @@ function registerIpcHandlers() {
   // Базовые обработчики store
   registerStoreHandlers(store);
 
-  // Обработчики для процессов (spawn, fs) - удалены из соображений безопасности
-  // registerProcessHandlers();
-
   // Обработчики для управления окном
   registerWindowHandlers(getMainWindow);
 
