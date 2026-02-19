@@ -5,7 +5,7 @@ const { getMainWindow } = require("../windowManager");
 const { injectPlugin } = require("../pluginHandler");
 
 const registerStoreHandlers = require("./storeHandlers");
-const registerProcessHandlers = require("./processHandlers");
+// const registerProcessHandlers = require("./processHandlers");
 const registerWindowHandlers = require("./windowHandlers");
 const { registerSettingsHandlers } = require("./settingsHandlers");
 const registerCloudHandlers = require("./cloudHandlers");
@@ -16,8 +16,8 @@ function registerIpcHandlers() {
   // Базовые обработчики store
   registerStoreHandlers(store);
 
-  // Обработчики для процессов (spawn, fs)
-  registerProcessHandlers();
+  // Обработчики для процессов (spawn, fs) - удалены из соображений безопасности
+  // registerProcessHandlers();
 
   // Обработчики для управления окном
   registerWindowHandlers(getMainWindow);

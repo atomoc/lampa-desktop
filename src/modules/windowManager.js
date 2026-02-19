@@ -320,7 +320,9 @@ function setupWindowOpenHandler(mainWindow) {
   const { shell } = require("electron");
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-    shell.openExternal(url);
+    if (url.startsWith("http:") || url.startsWith("https:")) {
+      shell.openExternal(url);
+    }
     return { action: "deny" };
   });
 }
