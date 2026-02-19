@@ -1,11 +1,11 @@
-const { contextBridge, ipcRenderer } = require("electron");
+﻿const { contextBridge, ipcRenderer } = require("electron");
 
-// Модуль для Node.js модулей удален из соображений безопасности (RCE)
+// ╨Ь╨╛╨┤╤Г╨╗╤М ╨┤╨╗╤П Node.js ╨╝╨╛╨┤╤Г╨╗╨╡╨╣ ╤Г╨┤╨░╨╗╨╡╨╜ ╨╕╨╖ ╤Б╨╛╨╛╨▒╤А╨░╨╢╨╡╨╜╨╕╨╣ ╨▒╨╡╨╖╨╛╨┐╨░╤Б╨╜╨╛╤Б╤В╨╕ (RCE)
 // contextBridge.exposeInMainWorld("require", (module) => { ... });
 
-// Основное Electron API
+// ╨Ю╤Б╨╜╨╛╨▓╨╜╨╛╨╡ Electron API
 contextBridge.exposeInMainWorld("electronAPI", {
-  // Управление приложением
+  // ╨г╨┐╤А╨░╨▓╨╗╨╡╨╜╨╕╨╡ ╨┐╤А╨╕╨╗╨╛╨╢╨╡╨╜╨╕╨╡╨╝
   closeApp: () => ipcRenderer.send("close-app"),
   toogleFullscreen: () => ipcRenderer.send("toggle-fullscreen"),
   loadUrl: (url) => ipcRenderer.send("load-url", url),
@@ -13,7 +13,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
     return await ipcRenderer.invoke("get-app-version");
   },
 
-  // Работа с хранилищем
+  // ╨а╨░╨▒╨╛╤В╨░ ╤Б ╤Е╤А╨░╨╜╨╕╨╗╨╕╤Й╨╡╨╝
   store: {
     get: async (key) => {
       return await ipcRenderer.invoke("store-get", key);
@@ -29,7 +29,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
     },
   },
 
-  // Экспорт/импорт настроек
+  // ╨н╨║╤Б╨┐╨╛╤А╤В/╨╕╨╝╨┐╨╛╤А╤В ╨╜╨░╤Б╤В╤А╨╛╨╡╨║
   exportSettingsToCloud: async () => {
     return await ipcRenderer.invoke("export-settings-to-cloud");
   },
@@ -43,34 +43,34 @@ contextBridge.exposeInMainWorld("electronAPI", {
     return await ipcRenderer.invoke("import-settings-from-file");
   },
 
-  // Торрент сервер
+  // ╨в╨╛╤А╤А╨╡╨╜╤В ╤Б╨╡╤А╨▓╨╡╤А
   torrServer: {
-    // Управление процессом
+    // ╨г╨┐╤А╨░╨▓╨╗╨╡╨╜╨╕╨╡ ╨┐╤А╨╛╤Ж╨╡╤Б╤Б╨╛╨╝
     start: (args) => ipcRenderer.invoke("torrserver-start", args),
     stop: () => ipcRenderer.invoke("torrserver-stop"),
     restart: (args) => ipcRenderer.invoke("torrserver-restart", args),
     getStatus: () => ipcRenderer.invoke("torrserver-status"),
 
-    // Установка и обновление
+    // ╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ ╨╕ ╨╛╨▒╨╜╨╛╨▓╨╗╨╡╨╜╨╕╨╡
     download: (version) => ipcRenderer.invoke("torrserver-download", version),
     checkUpdate: () => ipcRenderer.invoke("torrserver-check-update"),
     update: () => ipcRenderer.invoke("torrserver-update"),
 
-    // Подписка на вывод процесса (для отображения логов в интерфейсе)
+    // ╨Я╨╛╨┤╨┐╨╕╤Б╨║╨░ ╨╜╨░ ╨▓╤Л╨▓╨╛╨┤ ╨┐╤А╨╛╤Ж╨╡╤Б╤Б╨░ (╨┤╨╗╤П ╨╛╤В╨╛╨▒╤А╨░╨╢╨╡╨╜╨╕╤П ╨╗╨╛╨│╨╛╨▓ ╨▓ ╨╕╨╜╤В╨╡╤А╤Д╨╡╨╣╤Б╨╡)
     onOutput: (callback) => {
       const subscription = (event, data) => callback(data);
       ipcRenderer.on("torrserver-output", subscription);
 
-      // Подписываемся на вывод (инициируем отправку логов из main процесса)
+      // ╨Я╨╛╨┤╨┐╨╕╤Б╤Л╨▓╨░╨╡╨╝╤Б╤П ╨╜╨░ ╨▓╤Л╨▓╨╛╨┤ (╨╕╨╜╨╕╤Ж╨╕╨╕╤А╤Г╨╡╨╝ ╨╛╤В╨┐╤А╨░╨▓╨║╤Г ╨╗╨╛╨│╨╛╨▓ ╨╕╨╖ main ╨┐╤А╨╛╤Ж╨╡╤Б╤Б╨░)
       ipcRenderer.send("torrserver-subscribe-output");
 
-      // Возвращаем функцию для отписки
+      // ╨Т╨╛╨╖╨▓╤А╨░╤Й╨░╨╡╨╝ ╤Д╤Г╨╜╨║╤Ж╨╕╤О ╨┤╨╗╤П ╨╛╤В╨┐╨╕╤Б╨║╨╕
       return () => {
         ipcRenderer.removeListener("torrserver-output", subscription);
       };
     },
 
-    // Короткая форма для проверки статуса (удобно для кнопок)
+    // ╨Ъ╨╛╤А╨╛╤В╨║╨░╤П ╤Д╨╛╤А╨╝╨░ ╨┤╨╗╤П ╨┐╤А╨╛╨▓╨╡╤А╨║╨╕ ╤Б╤В╨░╤В╤Г╤Б╨░ (╤Г╨┤╨╛╨▒╨╜╨╛ ╨┤╨╗╤П ╨║╨╜╨╛╨┐╨╛╨║)
     isRunning: async () => {
       const status = await ipcRenderer.invoke("torrserver-status");
       return status.running;
@@ -80,7 +80,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
     isInstalled: () => ipcRenderer.invoke("torrserver-is-installed"),
   },
 
-  // Работа с папками
+  // ╨а╨░╨▒╨╛╤В╨░ ╤Б ╨┐╨░╨┐╨║╨░╨╝╨╕
   folder: {
     open: (path) => ipcRenderer.invoke("folder-open", path),
   },

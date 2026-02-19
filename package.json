@@ -9,7 +9,9 @@
   },
   "main": "src/main.js",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.0.0 <25.0.0",
+    "npm": "please-use-yarn",
+    "yarn": ">= 4.0.0"
   },
   "scripts": {
     "start": "electron .",
@@ -17,16 +19,16 @@
     "build-linux": "electron-builder --linux --publish=never",
     "build-mac": "electron-builder --mac --x64 --arm64 --publish=never",
     "build-win": "electron-builder --win --x64 --ia32 --publish=never",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier . --check",
     "lintfix": "eslint . --fix && prettier --write --list-different .",
     "release:changelog": "commit-and-tag-version",
-    "release": "npm run release:changelog && git push --follow-tags origin $CI_COMMIT_REF_NAME"
+    "release": "yarn release:changelog && git push --follow-tags origin $CI_COMMIT_REF_NAME"
   },
   "commit-and-tag-version": {
     "scripts": {
-      "postchangelog": "npm run lintfix"
+      "postchangelog": "yarn lintfix"
     }
   },
   "dependencies": {
@@ -103,5 +105,6 @@
     "src/**/*",
     "node_modules/*",
     "!dist/*"
-  ]
+  ],
+  "packageManager": "yarn@4.6.0"
 }

@@ -1,4 +1,4 @@
-const { BrowserWindow, screen } = require("electron");
+﻿const { BrowserWindow, screen } = require("electron");
 const path = require("node:path");
 const store = require("./storeManager");
 const { setupPluginHandler } = require("./pluginHandler");
@@ -99,7 +99,7 @@ function createWindow() {
           height: windowOptions.height,
         });
       } catch (error) {
-        console.error("Ошибка при установке границ окна:", error);
+        console.error("╨Ю╤И╨╕╨▒╨║╨░ ╨┐╤А╨╕ ╤Г╤Б╤В╨░╨╜╨╛╨▓╨║╨╡ ╨│╤А╨░╨╜╨╕╤Ж ╨╛╨║╨╜╨░:", error);
         mainWindow.setBounds({ x: 0, y: 0, width: 1200, height: 800 });
       }
     }
@@ -227,16 +227,16 @@ function setupErrorHandler(mainWindow) {
           max-width: 600px;
           margin: 0 auto;
         ">
-          <h1>Ошибка загрузки страницы</h1>
-          <p><strong>Код ошибки:</strong> ${errorCode}</p>
-          <p><strong>Описание:</strong> ${errorDescription}</p>
-          <p><strong>Текущий URL:</strong> ${validatedURL}</p>
+          <h1>╨Ю╤И╨╕╨▒╨║╨░ ╨╖╨░╨│╤А╤Г╨╖╨║╨╕ ╤Б╤В╤А╨░╨╜╨╕╤Ж╤Л</h1>
+          <p><strong>╨Ъ╨╛╨┤ ╨╛╤И╨╕╨▒╨║╨╕:</strong> ${errorCode}</p>
+          <p><strong>╨Ю╨┐╨╕╤Б╨░╨╜╨╕╨╡:</strong> ${errorDescription}</p>
+          <p><strong>╨в╨╡╨║╤Г╤Й╨╕╨╣ URL:</strong> ${validatedURL}</p>
 
           <div style="margin: 20px 0;">
             <input
               id="customUrlInput"
               type="text"
-              placeholder="Введите новый URL (например, http://lampa.mx)"
+              placeholder="╨Т╨▓╨╡╨┤╨╕╤В╨╡ ╨╜╨╛╨▓╤Л╨╣ URL (╨╜╨░╨┐╤А╨╕╨╝╨╡╤А, http://lampa.mx)"
               style="
                 width: 80%;
                 padding: 10px;
@@ -259,7 +259,7 @@ function setupErrorHandler(mainWindow) {
                 cursor: pointer;
               "
             >
-              Загрузить LAMPA.MX
+              ╨Ч╨░╨│╤А╤Г╨╖╨╕╤В╤М LAMPA.MX
             </button>
             <button
               onclick="handleCustomReload()"
@@ -272,7 +272,7 @@ function setupErrorHandler(mainWindow) {
                 cursor: pointer;
               "
             >
-              Перейти
+              ╨Я╨╡╤А╨╡╨╣╤В╨╕
             </button>
           </div>
         </div>
@@ -283,8 +283,8 @@ function setupErrorHandler(mainWindow) {
               await window.electronAPI.store.set('lampaUrl', 'http://lampa.mx');
               window.electronAPI.loadUrl('http://lampa.mx');
             } catch (err) {
-              console.error('Ошибка:', err);
-              alert('Не удалось загрузить lampa.mx: ' + err.message);
+              console.error('╨Ю╤И╨╕╨▒╨║╨░:', err);
+              alert('╨Э╨╡ ╤Г╨┤╨░╨╗╨╛╤Б╤М ╨╖╨░╨│╤А╤Г╨╖╨╕╤В╤М lampa.mx: ' + err.message);
             }
           }
 
@@ -293,7 +293,7 @@ function setupErrorHandler(mainWindow) {
             const url = input.value.trim();
 
             if (!url) {
-              alert('Пожалуйста, введите URL!');
+              alert('╨Я╨╛╨╢╨░╨╗╤Г╨╣╤Б╤В╨░, ╨▓╨▓╨╡╨┤╨╕╤В╨╡ URL!');
               return;
             }
 
@@ -301,8 +301,8 @@ function setupErrorHandler(mainWindow) {
               await window.electronAPI.store.set('lampaUrl', url);
               window.electronAPI.loadUrl(url);
             } catch (err) {
-              console.error('Ошибка:', err);
-              alert('Не удалось перейти по URL: ' + err.message);
+              console.error('╨Ю╤И╨╕╨▒╨║╨░:', err);
+              alert('╨Э╨╡ ╤Г╨┤╨░╨╗╨╛╤Б╤М ╨┐╨╡╤А╨╡╨╣╤В╨╕ ╨┐╨╛ URL: ' + err.message);
             }
           }
         </script>
