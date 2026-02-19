@@ -17,16 +17,16 @@
     "build-linux": "electron-builder --linux --publish=never",
     "build-mac": "electron-builder --mac --x64 --arm64 --publish=never",
     "build-win": "electron-builder --win --x64 --ia32 --publish=never",
-    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier . --check",
     "lintfix": "eslint . --fix && prettier --write --list-different .",
     "release:changelog": "commit-and-tag-version",
-    "release": "yarn release:changelog && git push --follow-tags origin $CI_COMMIT_REF_NAME"
+    "release": "npm run release:changelog && git push --follow-tags origin $CI_COMMIT_REF_NAME"
   },
   "commit-and-tag-version": {
     "scripts": {
-      "postchangelog": "yarn lintfix"
+      "postchangelog": "npm run lintfix"
     }
   },
   "dependencies": {
