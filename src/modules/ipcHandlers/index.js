@@ -5,7 +5,6 @@ const { getMainWindow } = require("../windowManager");
 const { injectPlugin } = require("../pluginHandler");
 
 const registerStoreHandlers = require("./storeHandlers");
-// const registerProcessHandlers = require("./processHandlers");
 const registerWindowHandlers = require("./windowHandlers");
 const { registerSettingsHandlers } = require("./settingsHandlers");
 const registerCloudHandlers = require("./cloudHandlers");
