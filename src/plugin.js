@@ -183,18 +183,6 @@
         ru: "Автозапуск при старте Lampa",
         en: "Autostart on Lampa launch",
       },
-      app_settings_ts_host_name: {
-        ru: "Хост на котором запускать TS",
-        en: "Host to run TS on",
-      },
-      app_settings_ts_host_description: {
-        ru: "Если не знаете зачем это, оставьте localhost",
-        en: "If you don't know why you need this, leave localhost",
-      },
-      app_settings_ts_host_ok: {
-        ru: "Успешно изменено, перезапустите TorrServer",
-        en: "Successfully changed, restart TorrServer",
-      },
       app_settings_ts_port_name: {
         ru: "Порт на котором запускать TS",
         en: "Port to run TS on",
@@ -270,7 +258,7 @@
         },
         onChange: async function (value) {
           if (URL.canParse(value)) {
-            Lampa.Settings.update();
+            // Lampa.Settings.update();
             Lampa.Noty.show(Lampa.Lang.translate("app_settings_lampa_url_ok"));
             setTimeout(
               async () => await window.electronAPI.store.set("lampaUrl", value),
@@ -711,28 +699,8 @@
           name: Lampa.Lang.translate("app_settings_ts_autostart_field_name"),
         },
         onChange: async function (value) {
-          Lampa.Settings.update();
+          // Lampa.Settings.update();
           await window.electronAPI.store.set("tsAutoStart", value === "true");
-        },
-      }),
-      settingsTsManager.loadAsyncSetting("tsHost", {
-        order: 7,
-        param: {
-          name: "app_settings_ts_tsHost",
-          type: "input",
-          values: "",
-        },
-        field: {
-          name: Lampa.Lang.translate("app_settings_ts_host_name"),
-          description: Lampa.Lang.translate("app_settings_ts_host_description"),
-        },
-        onChange: async function (value) {
-          Lampa.Settings.update();
-          Lampa.Noty.show(Lampa.Lang.translate("app_settings_ts_host_ok"));
-          setTimeout(
-            async () => await window.electronAPI.store.set("tsHost", value),
-            1000,
-          );
         },
       }),
       settingsTsManager.loadAsyncSetting("tsPort", {
@@ -747,7 +715,7 @@
           description: Lampa.Lang.translate("app_settings_ts_port_description"),
         },
         onChange: async function (value) {
-          Lampa.Settings.update();
+          // Lampa.Settings.update();
           Lampa.Noty.show(Lampa.Lang.translate("app_settings_ts_port_ok"));
           setTimeout(
             async () => await window.electronAPI.store.set("tsPort", value),
@@ -788,15 +756,12 @@
               );
             }
 
-            const tsHost = await window.electronAPI.store.get("tsHost");
             const tsPort = await window.electronAPI.store.get("tsPort");
             const result = await window.electronAPI.torrServer.start([
-              "--ip",
-              tsHost,
               "--port",
               tsPort,
             ]);
-            Lampa.Storage.set("torrserver_url", `http://${tsHost}:${tsPort}`);
+            Lampa.Storage.set("torrserver_url", `http://localhost:${tsPort}`);
             Lampa.Storage.set("torrserver_use_link", "one");
 
             updateTsStatus();
@@ -840,15 +805,12 @@
           onChange: async () => {
             Lampa.Loading.start(() => {}, "Перезапуск TorrServer");
 
-            const tsHost = await window.electronAPI.store.get("tsHost");
             const tsPort = await window.electronAPI.store.get("tsPort");
             const result = await window.electronAPI.torrServer.restart([
-              "--ip",
-              tsHost,
               "--port",
               tsPort,
             ]);
-            Lampa.Storage.set("torrserver_url", `http://${tsHost}:${tsPort}`);
+            Lampa.Storage.set("torrserver_url", `http://localhost:${tsPort}`);
             Lampa.Storage.set("torrserver_use_link", "one");
 
             updateTsStatus();
