@@ -24,7 +24,11 @@
     "lint:prettier": "prettier . --check",
     "lintfix": "eslint . --fix && prettier --write --list-different .",
     "release:changelog": "commit-and-tag-version",
-    "release": "yarn release:changelog && git push --follow-tags origin $CI_COMMIT_REF_NAME"
+    "release": "yarn release:changelog && git push --follow-tags origin $CI_COMMIT_REF_NAME",
+    "postinstall": "node scripts/patch-ffmpeg.js",
+    "ffmpeg:patch": "node scripts/patch-ffmpeg.js",
+    "ffmpeg:check": "node scripts/patch-ffmpeg.js --check",
+    "ffmpeg:restore": "node scripts/patch-ffmpeg.js --restore"
   },
   "commit-and-tag-version": {
     "scripts": {
@@ -34,6 +38,7 @@
   "dependencies": {
     "electron-store": "11.0.2",
     "electron-updater": "6.7.3",
+    "ffmpeg-static": "^5.3.0",
     "http-proxy": "1.18.1",
     "which": "6.0.1"
   },
@@ -55,6 +60,7 @@
   "build": {
     "appId": "com.lampa.desktop",
     "productName": "Lampa",
+    "afterPack": "./scripts/afterPack.js",
     "artifactName": "lampa-${arch}-${version}.${ext}",
     "linux": {
       "target": [
@@ -98,7 +104,10 @@
       "provider": "github",
       "owner": "Kolovatoff",
       "repo": "lampa-desktop"
-    }
+    },
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**"
+    ]
   },
   "files": [
     "assets/**/*",
