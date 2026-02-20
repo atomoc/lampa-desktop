@@ -28,6 +28,7 @@ const CONFIG = {
     linux: {
         x64: `${NWJS_FFMPEG_VERSION}-linux-x64.zip`,
         ia32: `${NWJS_FFMPEG_VERSION}-linux-ia32.zip`,
+        // arm64 не доступен в nwjs-ffmpeg-prebuilt — AC3 будет работать через наш audioTranscoder
         filename: "libffmpeg.so",
     },
     darwin: {
@@ -136,12 +137,6 @@ module.exports = async function afterPack(context) {
     }
 
     const archiveFile = platformConfig[archName];
-    if (!archiveFile) {
-        console.warn(
-            `⚠️  Неподдерживаемая архитектура: ${archName}, пропускаем`,
-        );
-        return;
-    }
 
     // Находим ffmpeg в собранном приложении
     const ffmpegPath = findFfmpegInAppDir(appOutDir, electronPlatformName);
@@ -154,35 +149,99 @@ module.exports = async function afterPack(context) {
 
     console.log(`📁 Найден: ${ffmpegPath}`);
 
-    // Скачиваем и заменяем
-    const tmpDir = path.join(appOutDir, ".tmp-ffmpeg");
-    const zipPath = path.join(tmpDir, archiveFile);
+    // Скачиваем и заменяем Chromium ffmpeg (только если есть для этой комбинации)
+    if (archiveFile) {
+        const tmpDir = path.join(appOutDir, ".tmp-ffmpeg");
+        const zipPath = path.join(tmpDir, archiveFile);
 
-    fs.mkdirSync(tmpDir, { recursive: true });
+        fs.mkdirSync(tmpDir, { recursive: true });
 
-    const url = `${GITHUB_RELEASES_BASE}/${archiveFile}`;
-    console.log(`⬇️  Скачиваем: ${archiveFile}`);
+        const url = `${GITHUB_RELEASES_BASE}/${archiveFile}`;
+        console.log(`⬇️  Скачиваем Chromium ffmpeg: ${archiveFile}`);
 
-    await downloadFile(url, zipPath);
+        await downloadFile(url, zipPath);
 
-    console.log("📦 Распаковываем...");
-    const extractDir = path.join(tmpDir, "extracted");
-    await extractZip(zipPath, extractDir);
+        console.log("📦 Распаковываем...");
+        const extractDir = path.join(tmpDir, "extracted");
+        await extractZip(zipPath, extractDir);
 
-    const newFfmpeg = path.join(extractDir, platformConfig.filename);
-    if (!fs.existsSync(newFfmpeg)) {
-        console.error(`❌ ${platformConfig.filename} не найден в архиве`);
+        const newFfmpeg = path.join(extractDir, platformConfig.filename);
+        if (!fs.existsSync(newFfmpeg)) {
+            console.error(`❌ ${platformConfig.filename} не найден в архиве`);
+        } else {
+            fs.copyFileSync(newFfmpeg, ffmpegPath);
+            const newSize = fs.statSync(ffmpegPath).size;
+            console.log(
+                `✅ Chromium ffmpeg заменён (${(newSize / 1024 / 1024).toFixed(1)} МБ) — AC3/EAC3 включены`,
+            );
+        }
         fs.rmSync(tmpDir, { recursive: true, force: true });
+    } else {
+        console.log(`⚠️  Chromium ffmpeg патч недоступен для ${archName}, пропускаем`);
+    }
+
+    // =====================================================
+    // Замена ffmpeg-static бинарника для целевой платформы
+    // При кросс-компиляции (напр. Windows → Linux arm64)
+    // в пакете оказывается ffmpeg.exe вместо Linux-бинарника
+    // =====================================================
+    await patchFfmpegStatic(appOutDir, electronPlatformName, archName);
+};
+
+/**
+ * Скачивает и подменяет ffmpeg-static бинарник для целевой платформы
+ */
+async function patchFfmpegStatic(appOutDir, platform, arch) {
+    const FFMPEG_STATIC_RELEASE = "b6.1.1";
+    const FFMPEG_STATIC_BASE = `https://github.com/eugeneware/ffmpeg-static/releases/download/${FFMPEG_STATIC_RELEASE}`;
+
+    // Определяем имя бинарника для целевой платформы
+    const targetExeName = platform === "win32" ? "ffmpeg.exe" : "ffmpeg";
+    const downloadName = `ffmpeg-${platform}-${arch}.gz`;
+
+    // Ищем ffmpeg-static в asar.unpacked
+    const unpackedDir = path.join(appOutDir, "resources", "app.asar.unpacked", "node_modules", "ffmpeg-static");
+    if (!fs.existsSync(unpackedDir)) {
+        console.log(`⚠️  ffmpeg-static не найден в asar.unpacked, пропускаем`);
         return;
     }
 
-    fs.copyFileSync(newFfmpeg, ffmpegPath);
+    const targetPath = path.join(unpackedDir, targetExeName);
 
-    const newSize = fs.statSync(ffmpegPath).size;
-    console.log(
-        `✅ ffmpeg заменён (${(newSize / 1024 / 1024).toFixed(1)} МБ) — AC3/EAC3 включены`,
-    );
+    // Удаляем бинарники от другой платформы
+    for (const f of fs.readdirSync(unpackedDir)) {
+        if (f.startsWith("ffmpeg") && (f.endsWith(".exe") || !f.includes("."))) {
+            const fullPath = path.join(unpackedDir, f);
+            if (f !== targetExeName) {
+                fs.unlinkSync(fullPath);
+                console.log(`🗑️  Удалён неподходящий бинарник: ${f}`);
+            }
+        }
+    }
 
-    // Очистка
+    const downloadUrl = `${FFMPEG_STATIC_BASE}/${downloadName}`;
+    const tmpDir = path.join(appOutDir, ".tmp-ffmpeg-static");
+    const gzPath = path.join(tmpDir, downloadName);
+    fs.mkdirSync(tmpDir, { recursive: true });
+
+    console.log(`⬇️  Скачиваем ffmpeg-static для ${platform}-${arch}...`);
+
+    try {
+        await downloadFile(downloadUrl, gzPath);
+
+        // Распаковываем .gz
+        const zlib = require("zlib");
+        const gzData = fs.readFileSync(gzPath);
+        const ffmpegBin = zlib.gunzipSync(gzData);
+        fs.writeFileSync(targetPath, ffmpegBin);
+        fs.chmodSync(targetPath, 0o755);
+
+        const sizeMB = (ffmpegBin.length / 1024 / 1024).toFixed(1);
+        console.log(`✅ ffmpeg-static заменён на ${platform}-${arch} (${sizeMB} МБ)`);
+    } catch (err) {
+        console.error(`❌ Не удалось скачать ffmpeg-static для ${platform}-${arch}:`, err.message);
+        console.log(`⚠️  Транскодирование AC3→AAC может не работать на целевой платформе`);
+    }
+
     fs.rmSync(tmpDir, { recursive: true, force: true });
-};
+}

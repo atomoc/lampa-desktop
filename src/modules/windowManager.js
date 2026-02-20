@@ -170,9 +170,9 @@ function createWindow() {
   setupErrorHandler(mainWindow);
   setupWindowOpenHandler(mainWindow);
 
-  if (process.argv.includes("--dev")) {
-    mainWindow.webContents.openDevTools();
-  }
+  // if (process.argv.includes("--dev")) {
+  //   mainWindow.webContents.openDevTools();
+  // }
 
   return mainWindow;
 }

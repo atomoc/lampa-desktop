@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Lampa
+Comment=Медиа-клиент Lampa
+Exec=/opt/lampa/lampa-desktop --no-sandbox %U
+Icon=lampa
+Terminal=false
+Type=Application
+Categories=AudioVideo;Video;Player;
+MimeType=x-scheme-handler/magnet;
+StartupWMClass=lampa-desktop

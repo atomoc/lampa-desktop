@@ -70,6 +70,9 @@ class AudioTranscoder {
         const seekTime = parseFloat(startParam);
         console.log(`🎬 [Transcode] ${seekTime > 0 ? 'Seek to ' + seekTime + 's' : 'Start'}: ${targetUrl}`);
 
+        // Статический ffmpeg не может разрезолвить "localhost" — заменяем на IP
+        const ffmpegTargetUrl = targetUrl.replace(/localhost/g, '127.0.0.1');
+
         const ffmpegArgs = [
             "-hide_banner",
             "-probesize", "10M",
@@ -86,7 +89,7 @@ class AudioTranscoder {
         }
 
         ffmpegArgs.push(
-            "-i", targetUrl,
+            "-i", ffmpegTargetUrl,
             "-y",
             "-map", "0:v:0",
             "-map", "0:a:0", // Берем первую аудиодорожку
@@ -123,6 +126,7 @@ class AudioTranscoder {
         let durationParsed = false;
         ffmpegProcess.stderr.on("data", (data) => {
             const str = data.toString();
+            console.log(`🎬 [FFmpeg stderr] ${str.trim()}`);
             stderrLog += str;
             if (!durationParsed) {
                 const durationMatch = stderrLog.match(/Duration: (\d{2}):(\d{2}):(\d{2}\.\d{2})/);
