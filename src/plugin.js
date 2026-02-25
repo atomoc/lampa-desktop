@@ -28,6 +28,15 @@
     icon.on("hover:enter", () => {
       window.electronAPI.closeApp();
     });
+
+    const icon_yt = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.582 6.186a2.506 2.506 0 0 0-1.762-1.766C18.265 4 12 4 12 4s-6.264 0-7.818.42a2.506 2.506 0 0 0-1.762 1.766C2 7.74 2 12 2 12s0 4.262.42 5.814a2.506 2.506 0 0 0 1.762 1.766C5.735 20 12 20 12 20s6.265 0 7.82-.42a2.506 2.506 0 0 0 1.762-1.766C22 16.262 22 12 22 12s0-4.262-.418-5.814M10 15.464V8.536L16 12l-6 3.464"/></svg>';
+    const iconYtBtn = $(`<div class="head__action selector">${icon_yt}</div>`);
+    container.append(iconYtBtn);
+    iconYtBtn.on("hover:enter", () => {
+      if (window.electronAPI && window.electronAPI.openYoutube) {
+        window.electronAPI.openYoutube();
+      }
+    });
   }
 
   var settings_app_icon =
@@ -206,7 +215,7 @@
     Lampa.Template.add(
       "settings_app_settings_ts",
       '<div><div class="settings-param" data-static="true" data-name="app_settings_ts_tsStatus"><div class="settings-param__name">Статус</div><div class="settings-param__descr">🔄</div></div>' +
-        '<div><div class="settings-param" data-static="true" data-name="app_settings_ts_tsVersion"><div class="settings-param__name">Версия</div><div class="settings-param__descr">🔄</div></div>',
+      '<div><div class="settings-param" data-static="true" data-name="app_settings_ts_tsVersion"><div class="settings-param__name">Версия</div><div class="settings-param__descr">🔄</div></div>',
     );
 
     const settingsManager = new SettingsManager("app_settings");
@@ -286,7 +295,7 @@
             ),
           },
           onChange: function () {
-            Lampa.Loading.start(() => {}, "Загружаю данные...");
+            Lampa.Loading.start(() => { }, "Загружаю данные...");
             const network = new Lampa.Reguest();
             network.silent(
               "https://api.github.com/repos/Kolovatoff/lampa-desktop/releases/latest",
@@ -504,7 +513,7 @@
                         if (Lampa.Platform.tv()) {
                           html.addClass(
                             "layer--" +
-                              (Lampa.Platform.mouse() ? "wheight" : "height"),
+                            (Lampa.Platform.mouse() ? "wheight" : "height"),
                           );
                         } else {
                           html.addClass("account-modal-split--mobile");
@@ -748,10 +757,10 @@
           onChange: async () => {
             const status = await window.electronAPI.torrServer.getStatus();
             if (status.installed) {
-              Lampa.Loading.start(() => {}, "Выполняется запуск TorrServer");
+              Lampa.Loading.start(() => { }, "Выполняется запуск TorrServer");
             } else {
               Lampa.Loading.start(
-                () => {},
+                () => { },
                 "Выполняется скачивание и запуск TorrServer",
               );
             }
@@ -783,7 +792,7 @@
             name: "🛑 Остановка TorrServer",
           },
           onChange: async () => {
-            Lampa.Loading.start(() => {}, "Остановка TorrServer");
+            Lampa.Loading.start(() => { }, "Остановка TorrServer");
             const result = await window.electronAPI.torrServer.stop();
             Lampa.Loading.stop();
             updateTsStatus();
@@ -803,7 +812,7 @@
             name: "🔁 Перезапуск TorrServer",
           },
           onChange: async () => {
-            Lampa.Loading.start(() => {}, "Перезапуск TorrServer");
+            Lampa.Loading.start(() => { }, "Перезапуск TorrServer");
 
             const tsPort = await window.electronAPI.store.get("tsPort");
             const result = await window.electronAPI.torrServer.restart([
@@ -831,7 +840,7 @@
             name: "🔍 Проверка обновлений TorrServer",
           },
           onChange: async () => {
-            Lampa.Loading.start(() => {}, "Проверка обновлений TorrServer");
+            Lampa.Loading.start(() => { }, "Проверка обновлений TorrServer");
             const result = await window.electronAPI.torrServer.checkUpdate();
             // Создаем модальное окно если есть обновление
             if (result.hasUpdate) {
@@ -854,7 +863,7 @@
               ts_update_modal_html
                 .find(".ts_update")
                 .on("hover:enter", async function () {
-                  Lampa.Loading.start(() => {}, "Обновление TorrServer");
+                  Lampa.Loading.start(() => { }, "Обновление TorrServer");
                   const result = await window.electronAPI.torrServer.update();
                   Lampa.Loading.stop();
                   Lampa.Modal.close();

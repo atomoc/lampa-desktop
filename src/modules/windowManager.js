@@ -111,7 +111,7 @@ function createWindow() {
     }
   });
 
-  const lampaUrl = store.get("lampaUrl");
+  const lampaUrl = store.get("lampaUrl") || "http://lampa.mx";
   mainWindow.loadURL(lampaUrl);
 
   setupPluginHandler(mainWindow);

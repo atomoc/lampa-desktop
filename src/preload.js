@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   // ╨г╨┐╤А╨░╨▓╨╗╨╡╨╜╨╕╨╡ ╨┐╤А╨╕╨╗╨╛╨╢╨╡╨╜╨╕╨╡╨╝
   closeApp: () => ipcRenderer.send("close-app"),
   toogleFullscreen: () => ipcRenderer.send("toggle-fullscreen"),
+  openYoutube: () => ipcRenderer.send("open-youtube"),
   loadUrl: (url) => ipcRenderer.send("load-url", url),
   getAppVersion: async () => {
     return await ipcRenderer.invoke("get-app-version");
