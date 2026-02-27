@@ -50,7 +50,10 @@ function registerWindowHandlers(getMainWindow) {
     }
     ytWindow.setMenu(null);
 
-    const youtubeTvUserAgent = "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/5.0 NativeTV/5.0 TV Safari/538.1";
+    // Известный рабочий хак из сообщества: притворяемся консолью PlayStation 4.
+    // YouTube доверяет PS4 и отдаёт потоки 1080p и 4K без строгих проверок DRM
+    // (Widevine L1), которые требуются для Smart TV (Tizen/WebOS).
+    const youtubeTvUserAgent = "Mozilla/5.0 (PS4; Leanback Shell) Gecko/20100101 Firefox/65.0 LeanbackShell/01.00.01.75 Sony PS4/ (PS4, , no, CH)";
     ytWindow.loadURL("https://www.youtube.com/tv", { userAgent: youtubeTvUserAgent });
 
     ytWindow.webContents.on('did-finish-load', () => {
@@ -60,13 +63,12 @@ function registerWindowHandlers(getMainWindow) {
         const btn = document.createElement('div');
         btn.id = 'lampa-yt-close-btn';
         btn.innerHTML = icon_quit;
-        btn.tabIndex = 0; // Make it focusable
+        btn.tabIndex = 0;
         btn.style.cssText = 'position:fixed;top:20px;right:20px;z-index:99999;cursor:pointer;width:50px;height:50px;color:white;background:rgba(0,0,0,0.5);border-radius:50%;padding:12px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;transition:all 0.3s;outline:none;';
         
         btn.onmouseover = () => { btn.style.background = 'rgba(255,0,0,0.8)'; btn.style.transform = 'scale(1.1)'; };
         btn.onmouseout = () => { btn.style.background = 'rgba(0,0,0,0.5)'; btn.style.transform = 'scale(1)'; };
         
-        // CSS for focus state (when navigating via remote)
         const style = document.createElement('style');
         style.innerHTML = '#lampa-yt-close-btn:focus { background: rgba(255,0,0,1) !important; transform: scale(1.1); box-shadow: 0 0 15px rgba(255,0,0,0.8); border: 2px solid white; }';
         document.head.appendChild(style);
@@ -77,33 +79,25 @@ function registerWindowHandlers(getMainWindow) {
         
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 10009 || e.keyCode === 461) { 
-            // 10009/461 are typical TV "Return" / "Back" keycodes
-            // We just let standard youtube handle back navigation, but if you want explicit close on 'Escape', we can leave it.
-            // If they are on the root of youtube, hitting back might not close the TV app.
             if(e.altKey && e.key === 'q') window.close();
           }
           
-          // Action on Enter when button is focused
           if (e.key === 'Enter' && document.activeElement === btn) {
             window.close();
           }
           
-          // Allow remote navigation to the button
           if (e.key === 'ArrowUp') {
-            // Check if we are at the top of the screen elements
             const active = document.activeElement;
             if (active) {
                 const rect = active.getBoundingClientRect();
-                if (rect.top < 150) { // If roughly at the top menu of YouTube
+                if (rect.top < 150) {
                    btn.focus();
                 }
             }
           }
           if (e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
             if (document.activeElement === btn) {
-               // When moving away from button, remove focus so YouTube takes over again
                btn.blur();
-               // We could focus the first focusable element of YouTube here, but blur usually passes control back nicely
             }
           }
         });
