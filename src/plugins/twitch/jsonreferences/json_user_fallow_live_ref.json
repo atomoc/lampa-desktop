@@ -1,0 +1,173 @@
+{
+	"_total": 3,
+	"streams": [{
+		"_id": 26773985792,
+		"game": "World of Warcraft",
+		"viewers": 17250,
+		"video_height": 1080,
+		"average_fps": 60,
+		"delay": 0,
+		"created_at": "2017-11-20T00:05:53Z",
+		"is_playlist": false,
+		"stream_type": "live",
+		"preview": {
+			"small": "https://static-cdn.jtvnw.net/previews-ttv/live_user_shroud-80x45.jpg",
+			"medium": "https://static-cdn.jtvnw.net/previews-ttv/live_user_shroud-320x180.jpg",
+			"large": "https://static-cdn.jtvnw.net/previews-ttv/live_user_shroud-640x360.jpg",
+			"template": "https://static-cdn.jtvnw.net/previews-ttv/live_user_shroud-{width}x{height}.jpg"
+		},
+		"channel": {
+			"mature": true,
+			"partner": true,
+			"status": "P60 Horde | Follow https://twitter.com/c9shroud",
+			"broadcaster_language": "en",
+			"display_name": "shroud",
+			"game": "World of Warcraft",
+			"language": "en",
+			"_id": 37402112,
+			"name": "shroud",
+			"created_at": "2012-11-03T15:50:32Z",
+			"updated_at": "2017-11-20T14:35:22Z",
+			"delay": null,
+			"logo": "https://static-cdn.jtvnw.net/jtv_user_pictures/shroud-profile_image-850e059aee3d6bfa-300x300.jpeg",
+			"banner": null,
+			"video_banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/9f5258a6aa3d3be1-channel_offline_image-1920x1080.png",
+			"background": null,
+			"profile_banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/c921e2b29e137572-profile_banner-480.png",
+			"profile_banner_background_color": "",
+			"url": "https://www.twitch.tv/shroud",
+			"views": 70761976,
+			"followers": 1737801,
+			"_links": {
+				"self": "https://api.twitch.tv/kraken/channels/shroud",
+				"follows": "https://api.twitch.tv/kraken/channels/shroud/follows",
+				"commercial": "https://api.twitch.tv/kraken/channels/shroud/commercial",
+				"stream_key": "https://api.twitch.tv/kraken/channels/shroud/stream_key",
+				"chat": "https://api.twitch.tv/kraken/chat/shroud",
+				"features": "https://api.twitch.tv/kraken/channels/shroud/features",
+				"subscriptions": "https://api.twitch.tv/kraken/channels/shroud/subscriptions",
+				"editors": "https://api.twitch.tv/kraken/channels/shroud/editors",
+				"teams": "https://api.twitch.tv/kraken/channels/shroud/teams",
+				"videos": "https://api.twitch.tv/kraken/channels/shroud/videos"
+			}
+		},
+		"_links": {
+			"self": "https://api.twitch.tv/kraken/streams/shroud"
+		}
+	}, {
+		"_id": 26777270800,
+		"game": "Nioh",
+		"viewers": 8369,
+		"video_height": 1080,
+		"average_fps": 60.0938967136,
+		"delay": 0,
+		"created_at": "2017-11-20T12:58:18Z",
+		"is_playlist": false,
+		"stream_type": "live",
+		"preview": {
+			"small": "https://static-cdn.jtvnw.net/previews-ttv/live_user_cohhcarnage-80x45.jpg",
+			"medium": "https://static-cdn.jtvnw.net/previews-ttv/live_user_cohhcarnage-320x180.jpg",
+			"large": "https://static-cdn.jtvnw.net/previews-ttv/live_user_cohhcarnage-640x360.jpg",
+			"template": "https://static-cdn.jtvnw.net/previews-ttv/live_user_cohhcarnage-{width}x{height}.jpg"
+		},
+		"channel": {
+			"mature": false,
+			"partner": true,
+			"status": "[!Shirt] Nioh DLC!! (PC/Odachi) - All new content! \\o/ - Rimworld & TWOM(DLC) soon! - !SubGift - !Everyday - !Store",
+			"broadcaster_language": "en",
+			"display_name": "CohhCarnage",
+			"game": "Nioh",
+			"language": "en",
+			"_id": 26610234,
+			"name": "cohhcarnage",
+			"created_at": "2011-12-06T18:20:34Z",
+			"updated_at": "2017-11-20T14:35:28Z",
+			"delay": null,
+			"logo": "https://static-cdn.jtvnw.net/jtv_user_pictures/cohhcarnage-profile_image-92dc409e41560047-300x300.png",
+			"banner": null,
+			"video_banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/cohhcarnage-channel_offline_image-58bb58f8f33ebd49-1920x1080.jpeg",
+			"background": null,
+			"profile_banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/cohhcarnage-profile_banner-bcb1b1b8e6194799-480.png",
+			"profile_banner_background_color": "",
+			"url": "https://www.twitch.tv/cohhcarnage",
+			"views": 70393766,
+			"followers": 880682,
+			"_links": {
+				"self": "https://api.twitch.tv/kraken/channels/cohhcarnage",
+				"follows": "https://api.twitch.tv/kraken/channels/cohhcarnage/follows",
+				"commercial": "https://api.twitch.tv/kraken/channels/cohhcarnage/commercial",
+				"stream_key": "https://api.twitch.tv/kraken/channels/cohhcarnage/stream_key",
+				"chat": "https://api.twitch.tv/kraken/chat/cohhcarnage",
+				"features": "https://api.twitch.tv/kraken/channels/cohhcarnage/features",
+				"subscriptions": "https://api.twitch.tv/kraken/channels/cohhcarnage/subscriptions",
+				"editors": "https://api.twitch.tv/kraken/channels/cohhcarnage/editors",
+				"teams": "https://api.twitch.tv/kraken/channels/cohhcarnage/teams",
+				"videos": "https://api.twitch.tv/kraken/channels/cohhcarnage/videos"
+			}
+		},
+		"_links": {
+			"self": "https://api.twitch.tv/kraken/streams/cohhcarnage"
+		}
+	}, {
+		"_id": 26947329440,
+		"game": "StarCraft II",
+		"viewers": 23,
+		"video_height": 720,
+		"average_fps": 60,
+		"delay": 0,
+		"created_at": "2017-12-10T14:57:48Z",
+		"is_playlist": false,
+		"stream_type": "watch_party",
+		"preview": {
+			"small": "https://static-cdn.jtvnw.net/previews-ttv/live_user_basetradetv-80x45.jpg",
+			"medium": "https://static-cdn.jtvnw.net/previews-ttv/live_user_basetradetv-320x180.jpg",
+			"large": "https://static-cdn.jtvnw.net/previews-ttv/live_user_basetradetv-640x360.jpg",
+			"template": "https://static-cdn.jtvnw.net/previews-ttv/live_user_basetradetv-{width}x{height}.jpg"
+		},
+		"channel": {
+			"mature": true,
+			"partner": true,
+			"status": "[VODCAST] !Events in chat",
+			"broadcaster_language": "en",
+			"display_name": "BASETRADETV",
+			"game": "StarCraft II",
+			"language": "en",
+			"_id": 36619478,
+			"name": "basetradetv",
+			"created_at": "2012-10-03T18:05:28Z",
+			"updated_at": "2017-12-10T15:03:04Z",
+			"delay": null,
+			"logo": "https://static-cdn.jtvnw.net/jtv_user_pictures/basetradetv-profile_image-4213df86ec02fdc2-300x300.png",
+			"banner": null,
+			"video_banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/basetradetv-channel_offline_image-b7c99d08ea915a66-1920x1080.png",
+			"background": null,
+			"profile_banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/dbd29728-a39d-4a3d-a8a8-669d0ca843af-profile_banner-480.png",
+			"profile_banner_background_color": "#000000",
+			"url": "https://www.twitch.tv/basetradetv",
+			"views": 22094943,
+			"followers": 100985,
+			"_links": {
+				"self": "https://api.twitch.tv/kraken/channels/basetradetv",
+				"follows": "https://api.twitch.tv/kraken/channels/basetradetv/follows",
+				"commercial": "https://api.twitch.tv/kraken/channels/basetradetv/commercial",
+				"stream_key": "https://api.twitch.tv/kraken/channels/basetradetv/stream_key",
+				"chat": "https://api.twitch.tv/kraken/chat/basetradetv",
+				"features": "https://api.twitch.tv/kraken/channels/basetradetv/features",
+				"subscriptions": "https://api.twitch.tv/kraken/channels/basetradetv/subscriptions",
+				"editors": "https://api.twitch.tv/kraken/channels/basetradetv/editors",
+				"teams": "https://api.twitch.tv/kraken/channels/basetradetv/teams",
+				"videos": "https://api.twitch.tv/kraken/channels/basetradetv/videos"
+			}
+		},
+		"_links": {
+			"self": "https://api.twitch.tv/kraken/streams/basetradetv"
+		}
+	}],
+	"_links": {
+		"self": "https://api.twitch.tv/kraken/streams?channel=basetradetv%2Ctessachka%2Cseri…djakegg%2Crendhammer%2Cpaladinsgame%2Crotterdam08&limit=99&stream_type=all",
+		"next": "https://api.twitch.tv/kraken/streams?channel=basetradetv%2Ctessachka%2Cseri…rendhammer%2Cpaladinsgame%2Crotterdam08&limit=99&offset=99&stream_type=all",
+		"featured": "https://api.twitch.tv/kraken/streams/featured",
+		"summary": "https://api.twitch.tv/kraken/streams/summary",
+		"followed": "https://api.twitch.tv/kraken/streams/followed"
+	}
+}

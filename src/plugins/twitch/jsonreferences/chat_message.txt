@@ -1,0 +1,145 @@
+
+cheer:
+{raw: "@badge-info=;badges=bits/1;bits=5;color=;display-n…RIVMSG #vader :Pride1 Pride1 Pride1 Pride1 Pride1", tags: {…}, prefix: "littlewitch03!littlewitch03@littlewitch03.tmi.twitch.tv", command: "PRIVMSG", params: Array(2)}
+
+raw:"@badge-info=;badges=bits/1;bits=5;color=;display-name=littlewitch03;emotes=;flags=;id=fb58c468-be82-4996-b1f5-cbd9299051d0;mod=0;room-id=69759951;subscriber=0;tmi-sent-ts=1578937260445;turbo=0;user-id=269569684;user-type= :littlewitch03!littlewitch03@littlewitch03.tmi.twitch.tv PRIVMSG #vader :Pride1 Pride1 Pride1 Pride1 Pride1"
+
+tags:
+badge-info: true
+badges: "bits/1"
+bits: "5"
+color: true
+display-name: "littlewitch03"
+emotes: true
+flags: true
+id: "fb58c468-be82-4996-b1f5-cbd9299051d0"
+mod: "0"
+room-id: "69759951"
+subscriber: "0"
+tmi-sent-ts: "1578937260445"
+turbo: "0"
+user-id: "269569684"
+
+prefix: "littlewitch03!littlewitch03@littlewitch03.tmi.twitch.tv"
+
+params: Array(2)
+0: "#vader"
+1: "Pride1 Pride1 Pride1 Pride1 Pride1"
+
+Action
+
+{raw: "@badge-info=subscriber/62;badges=moderator/1,subsc…rah stayed on the 1G Squad!! sum1g sumLove sum1g", tags: {…}, prefix: "xhipgamer!xhipgamer@xhipgamer.tmi.twitch.tv", command: "PRIVMSG", params: Array(2)}
+
+raw:"@badge-info=subscriber/62;badges=moderator/1,subscriber/60,bits-charity/1;color=#00B1CC;display-name=XhipGamer;emotes=90969:0-9,33-42/9874:78-82,92-96/80958:84-90;flags=;id=f5c96195-0c5c-4ad1-b32f-18f3da9359df;mod=1;room-id=26490481;subscriber=1;tmi-sent-ts=1579151501123;turbo=0;user-id=12253634;user-type=mod :xhipgamer!xhipgamer@xhipgamer.tmi.twitch.tv PRIVMSG #summit1g :ACTION sumBuhblam ✧ RESUB HYPE! (ﾉ◕ヮ◕)ﾉ sumBuhblam cheabrah stayed on the 1G Squad!! sum1g sumLove sum1g"
+
+tags:
+badge-info: "subscriber/62"
+badges: "moderator/1,subscriber/60,bits-charity/1"
+color: "#00B1CC"
+display-name: "XhipGamer"
+emotes: Array(3)
+0: "90969:0-9,33-42"
+1: "9874:78-82,92-96"
+2: "80958:84-90"
+length: 3
+__proto__: Array(0)
+flags: true
+id: "f5c96195-0c5c-4ad1-b32f-18f3da9359df"
+mod: "1"
+room-id: "26490481"
+subscriber: "1"
+tmi-sent-ts: "1579151501123"
+turbo: "0"
+user-id: "12253634"
+user-type: "mod"
+__proto__: Object
+prefix: "xhipgamer!xhipgamer@xhipgamer.tmi.twitch.tv"
+command: "PRIVMSG"
+
+
+params:
+0: "#summit1g"
+1: "ACTION sumBuhblam ✧ RESUB HYPE! (ﾉ◕ヮ◕)ﾉ sumBuhblam cheabrah stayed on the 1G Squad!! sum1g sumLove sum1g"
+
+bad message
+
+if (mmessage.indexOf('PRIVMSG') !== -1)
+
+"@badge-info=;badges=;color=#1E90FF;display-name=anz_17;emotes=;flags=;id=79f80fb5-2026-4902-89a0-7955203d867c;mod=0;room-id=71190292;subscriber=0;tmi-sent-ts=1579189770016;turbo=0;user-id=161527883;user-type= :anz_17!anz_17@anz_17.tmi.twitch.tv PRIVMSG #trainwreckstv :gachiHYPER
+@badge-info=;badges=;color=;display-name=joosdid911;emotes=;flags=0-9:A.3,22-35:P.6/S.6;id=4166abed-58f4-47bf-b675-ba9e015dff03;mod=0;room-id=71190292;subscriber=0;tmi-sent-ts=1579189769994;turbo=0;user-id=479107568;user-type= :joosdid911!joosdid911@joosdid911.tmi.twitch.tv PRIVMSG #trainwreckstv :YOU SUCK!! NO ONE STO SUCK YOUR DICK AHHAHA"
+
+{raw: "@badge-info=;badges=;color=#1E90FF;display-name=an…kstv :YOU SUCK!! NO ONE STO SUCK YOUR DICK AHHAHA", tags: {…}, prefix: "anz_17!anz_17@anz_17.tmi.twitch.tv", command: "PRIVMSG", params: Array(2)}
+raw: "@badge-info=;badges=;color=#1E90FF;display-name=anz_17;emotes=;flags=;id=79f80fb5-2026-4902-89a0-7955203d867c;mod=0;room-id=71190292;subscriber=0;tmi-sent-ts=1579189770016;turbo=0;user-id=161527883;user-type= :anz_17!anz_17@anz_17.tmi.twitch.tv PRIVMSG #trainwreckstv :gachiHYPER
+↵@badge-info=;badges=;color=;display-name=joosdid911;emotes=;flags=0-9:A.3,22-35:P.6/S.6;id=4166abed-58f4-47bf-b675-ba9e015dff03;mod=0;room-id=71190292;subscriber=0;tmi-sent-ts=1579189769994;turbo=0;user-id=479107568;user-type= :joosdid911!joosdid911@joosdid911.tmi.twitch.tv PRIVMSG #trainwreckstv :YOU SUCK!! NO ONE STO SUCK YOUR DICK AHHAHA"
+tags:
+badge-info: true
+badges: true
+color: "#1E90FF"
+display-name: "anz_17"
+emotes: true
+flags: true
+id: "79f80fb5-2026-4902-89a0-7955203d867c"
+mod: "0"
+room-id: "71190292"
+subscriber: "0"
+tmi-sent-ts: "1579189770016"
+turbo: "0"
+user-id: "161527883"
+user-type: true
+__proto__: Object
+prefix: "anz_17!anz_17@anz_17.tmi.twitch.tv"
+command: "PRIVMSG"
+params: Array(2)
+0: "#trainwreckstv"
+1: "gachiHYPER
+@badge-info=;badges=;color=;display-name=joosdid911;emotes=;flags=0-9:A.3,22-35:P.6/S.6;id=4166abed-58f4-47bf-b675-ba9e015dff03;mod=0;room-id=71190292;subscriber=0;tmi-sent-ts=1579189769994;turbo=0;user-id=479107568;user-type= :joosdid911!joosdid911@joosdid911.tmi.twitch.tv PRIVMSG #trainwreckstv :YOU SUCK!! NO ONE STO SUCK YOUR DICK AHHAHA"
+length: 2
+
+{
+	"raw": "@ban-duration=1;room-id=163836275;target-user-id=166028179;tmi-sent-ts=1590033328040 :tmi.twitch.tv CLEARCHAT #lord_kebun :mazen_01",
+	"tags": {
+		"ban-duration": "1",
+		"room-id": "163836275",
+		"target-user-id": "166028179",
+		"tmi-sent-ts": "1590033328040"
+	},
+	"prefix": "tmi.twitch.tv",
+	"command": "CLEARCHAT",
+	"params": ["#lord_kebun", "mazen_01"]
+}
+
+{
+	"raw": "@login=alansito;room-id=;target-msg-id=93d8927e-f739-4220-b181-23af92a13d71;tmi-sent-ts=1590034170574 :tmi.twitch.tv CLEARMSG #neeko :CAN ANYONE GIFT ME A SUB chicaGasm chicaGasm chicaGasm mellyGASM mellyGASM",
+	"tags": {
+		"login": "alansito",
+		"room-id": true,
+		"target-msg-id": "93d8927e-f739-4220-b181-23af92a13d71",
+		"tmi-sent-ts": "1590034170574"
+	},
+	"prefix": "tmi.twitch.tv",
+	"command": "CLEARMSG",
+	"params": ["#neeko", "CAN ANYONE GIFT ME A SUB chicaGasm chicaGasm chicaGasm mellyGASM mellyGASM"]
+}
+
+{
+	"raw": "@badge-info=;badges=;color=#00E6D5;display-name=amirrin2000;emotes=;flags=;id=ed90c2e7-79c4-4cb2-b341-15f61b63ea6c;mod=0;room-id=169188075;subscriber=0;tmi-sent-ts=1590034260634;turbo=0;user-id=159756290;user-type= :amirrin2000!amirrin2000@amirrin2000.tmi.twitch.tv PRIVMSG #neeko :Te gustaría vivir en Mexico?",
+	"tags": {
+		"badge-info": true,
+		"badges": true,
+		"color": "#00E6D5",
+		"display-name": "amirrin2000",
+		"emotes": true,
+		"flags": true,
+		"id": "ed90c2e7-79c4-4cb2-b341-15f61b63ea6c",
+		"mod": "0",
+		"room-id": "169188075",
+		"subscriber": "0",
+		"tmi-sent-ts": "1590034260634",
+		"turbo": "0",
+		"user-id": "159756290",
+		"user-type": true
+	},
+	"prefix": "amirrin2000!amirrin2000@amirrin2000.tmi.twitch.tv",
+	"command": "PRIVMSG",
+	"params": ["#neeko", "Te gustaría vivir en Mexico?"]
+}

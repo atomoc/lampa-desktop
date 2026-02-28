@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": "release",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/scripts/**",
+      "**/temp_maker/**",
+      "api.js",
+      "main.js",
+      "**/githubio/README.md",
+      "**/githubio/temp/**",
+      "**/githubio/json/**",
+      "**/githubio/images/**"
+    ]
+  }
+}

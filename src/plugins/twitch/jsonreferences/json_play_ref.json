@@ -1,0 +1,82 @@
+{
+	"stream": {
+		"_id": 26801315824,
+		"game": "PLAYERUNKNOWN'S BATTLEGROUNDS",
+		"viewers": 437,
+		"video_height": 900,
+		"average_fps": 60,
+		"delay": 0,
+		"created_at": "2017-11-23T13:02:29Z",
+		"is_playlist": false,
+		"stream_type": "live",
+		"preview": {
+			"small": "https://static-cdn.jtvnw.net/previews-ttv/live_user_tsm_viss-80x45.jpg",
+			"medium": "https://static-cdn.jtvnw.net/previews-ttv/live_user_tsm_viss-320x180.jpg",
+			"large": "https://static-cdn.jtvnw.net/previews-ttv/live_user_tsm_viss-640x360.jpg",
+			"template": "https://static-cdn.jtvnw.net/previews-ttv/live_user_tsm_viss-{width}x{height}.jpg"
+		},
+		"channel": {
+			"mature": false,
+			"partner": true,
+			"status": "TSM_Viss Test Servers - Happy Thanksgiving! | !newvid | [1169 Wins PUBG] 334/365 Twitter @TSMViss",
+			"broadcaster_language": "en",
+			"display_name": "TSM_Viss",
+			"game": "PLAYERUNKNOWN'S BATTLEGROUNDS",
+			"language": "en",
+			"_id": 90020006,
+			"name": "tsm_viss",
+			"created_at": "2015-05-02T01:16:35Z",
+			"updated_at": "2017-11-23T13:04:29Z",
+			"delay": null,
+			"logo": "https://static-cdn.jtvnw.net/jtv_user_pictures/15ea6088e14b5a50-profile_image-300x300.png",
+			"banner": null,
+			"video_banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/tsm_viss-channel_offline_image-4adbe8b5b71cc7f4-1920x1080.png",
+			"background": null,
+			"profile_banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/tsm_viss-profile_banner-a29616cdbfef941d-480.png",
+			"profile_banner_background_color": "#125d72",
+			"url": "https://www.twitch.tv/tsm_viss",
+			"views": 5676309,
+			"followers": 177030,
+			"_links": {
+				"self": "https://api.twitch.tv/kraken/channels/tsm_viss",
+				"follows": "https://api.twitch.tv/kraken/channels/tsm_viss/follows",
+				"commercial": "https://api.twitch.tv/kraken/channels/tsm_viss/commercial",
+				"stream_key": "https://api.twitch.tv/kraken/channels/tsm_viss/stream_key",
+				"chat": "https://api.twitch.tv/kraken/chat/tsm_viss",
+				"features": "https://api.twitch.tv/kraken/channels/tsm_viss/features",
+				"subscriptions": "https://api.twitch.tv/kraken/channels/tsm_viss/subscriptions",
+				"editors": "https://api.twitch.tv/kraken/channels/tsm_viss/editors",
+				"teams": "https://api.twitch.tv/kraken/channels/tsm_viss/teams",
+				"videos": "https://api.twitch.tv/kraken/channels/tsm_viss/videos"
+			}
+		},
+		"_links": {
+			"self": "https://api.twitch.tv/kraken/streams/tsm_viss"
+		}
+	},
+	"_links": {
+		"self": "https://api.twitch.tv/kraken/streams/tsm_viss",
+		"channel": "https://api.twitch.tv/kraken/channels/tsm_viss"
+	}
+}
+
+#EXTM3U
+#EXT-X-TWITCH-INFO:NODE="video-edge-c2a95c.sao01",MANIFEST-NODE-TYPE="weaver_cluster",CLUSTER="sao01",SUPPRESS="false",SERVER-TIME="1522115516.15",TRANSCODESTACK="2017TranscodeX264_V2",USER-IP="168.205.179.52",SERVING-ID="4cb5850a1b6947eea691aa62474755a3",MANIFEST-NODE="video-weaver.sao01",ABS="false",BROADCAST-ID="28083811648",STREAM-TIME="25791.1465969",MANIFEST-CLUSTER="sao01"
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="chunked",NAME="1080p60 (source)",AUTOSELECT=YES,DEFAULT=YES
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=9181767,RESOLUTION=1920x1080,CODECS="avc1.64002A,mp4a.40.2",VIDEO="chunked"
+http://video-weaver.sao01.hls.ttvnw.net/v1/playlist/Cr0CxVuwYrDRW3BBkdFMhxe…bvQA9BwW-G-5Sr291A4fNebK5ISEPuj3_IJRkWLePcvO-9q1uMaDNM2_elurADvD7J0kw.m3u8
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="720p60",NAME="720p60",AUTOSELECT=YES,DEFAULT=YES
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=3415023,RESOLUTION=1280x720,CODECS="avc1.77.31,mp4a.40.2",VIDEO="720p60"
+http://video-weaver.sao01.hls.ttvnw.net/v1/playlist/CrwCqUKCkfPW6CmVw0Ke33s…HcWc5pGei1NLJ_2t3Iqa6mrhmqxIQVjUORaLGP-xjke0UBn0cfxoMQ6sPUtt8t3b2z4WW.m3u8
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="720p30",NAME="720p",AUTOSELECT=YES,DEFAULT=YES
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2365023,RESOLUTION=1280x720,CODECS="avc1.77.31,mp4a.40.2",VIDEO="720p30"
+http://video-weaver.sao01.hls.ttvnw.net/v1/playlist/CrwCmexqWWVYO7hsRv6yok3…h9aPe_CJDla5EpScQLVyfFisTkBIQuVtMDF0_95jWLAB5-e_ywxoM2ldBzJ9T1d1XkTLH.m3u8
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="480p30",NAME="480p",AUTOSELECT=YES,DEFAULT=YES
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1420023,RESOLUTION=852x480,CODECS="avc1.77.31,mp4a.40.2",VIDEO="480p30"
+http://video-weaver.sao01.hls.ttvnw.net/v1/playlist/CrwC1TMlHOr5fAW4AGAFqaq…X_gUINDHV01VsJaFqohVRHenH7hIQxcJUPQSF6lnFMGo5CTTXvRoMAudFl7lSXXpK9bu7.m3u8
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="360p30",NAME="360p",AUTOSELECT=YES,DEFAULT=YES
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=630000,RESOLUTION=640x360,CODECS="avc1.77.31,mp4a.40.2",VIDEO="360p30"
+http://video-weaver.sao01.hls.ttvnw.net/v1/playlist/CrwCSnkYEqTJhoJQ4aonjgz…0lHsHqH2iRx-CB8NjgBhoSZn8IxIQIli_Fu8YtrzoeXFsF-TDOxoMnFVn1ghTvXT0uGsO.m3u8
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="160p30",NAME="160p",AUTOSELECT=YES,DEFAULT=YES
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=230000,RESOLUTION=284x160,CODECS="avc1.77.31,mp4a.40.2",VIDEO="160p30"
+http://video-weaver.sao01.hls.ttvnw.net/v1/playlist/CrwCFFXEXkU-5scWYFHtjDR…f6vyQj-fNb0T9NxlNm8tL98h3-BIQ9T9OSNOHlk3OgZuSKhOZ0RoMEzsA13-eFQ1tFr2u.m3u8
