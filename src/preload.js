@@ -1,7 +1,10 @@
 ﻿const { contextBridge, ipcRenderer } = require("electron");
 
 // ╨Ь╨╛╨┤╤Г╨╗╤М ╨┤╨╗╤П Node.js ╨╝╨╛╨┤╤Г╨╗╨╡╨╣ ╤Г╨┤╨░╨╗╨╡╨╜ ╨╕╨╖ ╤Б╨╛╨╛╨▒╤А╨░╨╢╨╡╨╜╨╕╨╣ ╨▒╨╡╨╖╨╛╨┐╨░╤Б╨╜╨╛╤Б╤В╨╕ (RCE)
-// contextBridge.exposeInMainWorld("require", (module) => { ... });
+contextBridge.exposeInMainWorld("require", (module) => {
+  console.log("Mock require called for:", module);
+  return {};
+});
 
 // ╨Ю╤Б╨╜╨╛╨▓╨╜╨╛╨╡ Electron API
 contextBridge.exposeInMainWorld("electronAPI", {

@@ -51,7 +51,7 @@ console.log("══════════════════════�
 console.log(`  Сборка Lampa v${VERSION} .deb (${ARCH})`);
 console.log("═══════════════════════════════════════");
 
-run(`npx electron-builder --linux dir --${ARCH} --publish=never`);
+run(`npx electron-builder --linux --dir --${ARCH} --publish=never`);
 
 // ─── Шаг 2: Создание staging директории ───
 console.log("\n📦 Подготовка staging директории...");
@@ -104,7 +104,7 @@ const wslBin = `${wslStaging}/usr/bin/${APP_NAME}`;
 
 const fpmCmd = `chmod +x ${wslBin} && fpm -s dir -t deb -n ${APP_NAME} -v ${VERSION} -a ${ARCH} --description 'Lampa Desktop' --category Multimedia --url 'https://github.com/Kolovatoff/lampa-desktop' --license MIT -f -p ${wslDeb} -C ${wslStaging} .`;
 
-run(`wsl -d Ubuntu-22.04 -- bash -c "${fpmCmd}"`);
+run(`wsl -d Ubuntu -- bash -c "${fpmCmd}"`);
 
 // ─── Шаг 4: Очистка ───
 fs.rmSync(STAGING_DIR, { recursive: true, force: true });

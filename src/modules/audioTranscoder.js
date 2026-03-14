@@ -93,9 +93,7 @@ class AudioTranscoder {
             "-y",
             "-map", "0:v:0",
             "-map", "0:a:0", // Берем первую аудиодорожку
-            "-c:v", "libx264",
-            "-preset", "ultrafast",
-            "-crf", "23",
+            "-c:v", "copy",
             "-c:a", "aac",
             "-b:a", "192k",
             "-ac", "2",

@@ -24,7 +24,6 @@ app.commandLine.appendSwitch(
     "MediaFoundationAsyncH264Encoding",
     // VP9/AV1 — ОБЯЗАТЕЛЬНО для YouTube HD/4K
     // YouTube раздаёт 1080p+ только в VP9 и AV1, H.264 ограничен 720p
-    "Vulkan",
     "VaapiVideoDecoder",
     "VaapiVideoEncoder",
   ].join(","),

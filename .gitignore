@@ -96,3 +96,10 @@ out/
 .idea
 dist
 .tmp-ffmpeg
+*.tar.gz
+*.deb
+*.AppImage
+*.exe
+*.dmg
+*.zip
+test.js
