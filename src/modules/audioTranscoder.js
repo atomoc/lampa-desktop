@@ -8,16 +8,45 @@
 const { spawn } = require("child_process");
 const http = require("http");
 const path = require("path");
+const which = require("which");
 
+/**
+ * Выбор ffmpeg.
+ *
+ * ffmpeg-static — полностью статическая сборка glibc. Такая сборка не может
+ * пользоваться NSS, а значит не резолвит доменные имена вообще:
+ *   [tcp] Failed to resolve hostname example.com: System error
+ * С ней работают только потоки по IP. Если TorrServer стоит на отдельном
+ * хосте, транскодер молча отдаёт пустой ответ — видео пропадает целиком.
+ *
+ * Поэтому приоритет у системного ffmpeg (он динамически слинкован и с DNS
+ * проблем не имеет), а ffmpeg-static остаётся запасным вариантом.
+ */
 let ffmpegPath;
+let ffmpegIsStatic = false;
+
 try {
-    ffmpegPath = require("ffmpeg-static");
-    if (ffmpegPath && ffmpegPath.includes("app.asar")) {
-        ffmpegPath = ffmpegPath.replace("app.asar", "app.asar.unpacked");
+    const systemFfmpeg = which.sync("ffmpeg", { nothrow: true });
+    if (systemFfmpeg) {
+        ffmpegPath = systemFfmpeg;
+        console.log(`🎬 FFmpeg найден (системный): ${ffmpegPath}`);
     }
-    console.log(`🎬 FFmpeg найден: ${ffmpegPath}`);
-} catch (e) {
-    console.error("❌ ffmpeg-static не установлен:", e.message);
+} catch {
+    /* empty */
+}
+
+if (!ffmpegPath) {
+    try {
+        ffmpegPath = require("ffmpeg-static");
+        if (ffmpegPath && ffmpegPath.includes("app.asar")) {
+            ffmpegPath = ffmpegPath.replace("app.asar", "app.asar.unpacked");
+        }
+        ffmpegIsStatic = true;
+        console.log(`🎬 FFmpeg найден (встроенный, static): ${ffmpegPath}`);
+        console.warn("⚠️ Встроенный ffmpeg не резолвит доменные имена — TorrServer по имени хоста работать не будет");
+    } catch (e) {
+        console.error("❌ ffmpeg-static не установлен:", e.message);
+    }
 }
 
 class AudioTranscoder {
@@ -70,8 +99,15 @@ class AudioTranscoder {
         const seekTime = parseFloat(startParam);
         console.log(`🎬 [Transcode] ${seekTime > 0 ? 'Seek to ' + seekTime + 's' : 'Start'}: ${targetUrl}`);
 
-        // Статический ffmpeg не может разрезолвить "localhost" — заменяем на IP
+        // Статический ffmpeg не может разрезолвить даже "localhost" — заменяем на IP
         const ffmpegTargetUrl = targetUrl.replace(/localhost/g, '127.0.0.1');
+
+        if (ffmpegIsStatic && !/^https?:\/\/(\d{1,3}\.){3}\d{1,3}([:/]|$)/.test(ffmpegTargetUrl)) {
+            console.warn(
+                `⚠️ [Transcode] Встроенный static-ffmpeg не сможет разрезолвить хост: ${ffmpegTargetUrl}` +
+                    ' — установите ffmpeg в систему (apt install ffmpeg)'
+            );
+        }
 
         const ffmpegArgs = [
             "-hide_banner",
