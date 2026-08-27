@@ -73,18 +73,16 @@ class LampaInitializer {
         console.log('🎬 [AudioTranscoder] AC3/EAC3 НЕ поддерживаются — активируем транскодирование');
 
         var TRANSCODE_PROXY = 'http://localhost:4000/transcode/video.mkv?url=';
-        var TORRSERVER_PATTERNS = [
-          'localhost:8090/stream/',
-          '127.0.0.1:8090/stream/'
-        ];
-
-        // Проверяет, является ли URL потоком от TorrServer
+        // Признак потока TorrServer — путь /stream/ вместе с параметром link=
+        // (хеш раздачи). Хост и порт НЕ фиксируем: TorrServer может стоять где
+        // угодно — localhost:8090, ts.example.com, за https-прокси и т.д.
+        // Раньше здесь был белый список из двух localhost-адресов, и при
+        // переезде TorrServer на отдельный хост звук AC3/EAC3 молча пропадал.
         function isTorrServerStream(url) {
           if (!url) return false;
-          for (var i = 0; i < TORRSERVER_PATTERNS.length; i++) {
-            if (url.indexOf(TORRSERVER_PATTERNS[i]) !== -1) return true;
-          }
-          return false;
+          // Уже завёрнутое в транскодер второй раз не оборачиваем
+          if (url.indexOf('/transcode') !== -1) return false;
+          return url.indexOf('/stream/') !== -1 && url.indexOf('link=') !== -1;
         }
 
         // Подменяем duration
